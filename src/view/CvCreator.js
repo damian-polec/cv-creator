@@ -1,15 +1,20 @@
 import React from 'react';
 
+import { Grid } from '@material-ui/core';
 import Builder from '../components/Builder/Builder';
 import Render from '../components/Render/Render';
 
 
 const CvCreator = () => {
   return (
-    <div>
-      <Builder/>
-      <Render />
-    </div>
+    <Grid container>
+      <Grid item xs={6} >
+        <Builder/>
+      </Grid>
+      <Grid item xs={6}>
+        <Render />
+      </Grid>
+    </Grid>
   )
 }
 

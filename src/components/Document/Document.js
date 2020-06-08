@@ -1,15 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Document, Page, View, Text, StyleSheet, Font} from '@react-pdf/renderer';
+import { useSelector } from 'react-redux';
+import { selectBg } from '../../reducers/docStylesSlice'
+import PersonalData from './PersonalData/PersonalData';
+import { Document, Page, View, Text, StyleSheet} from '@react-pdf/renderer';
+import { fontRegister } from '../../utils/fontRegister';
 
-// Font.register({ family: 'Roboto', src: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'})
-import RobotoRegular from '../../fonts/Roboto-Regular.ttf';
-import RobotoBold from '../../fonts/Roboto-Bold.ttf';
-Font.register({ family: 'Roboto', src: RobotoRegular });
-Font.register({ family: 'Roboto-Bold', src: RobotoBold })
-Font.registerHyphenationCallback(word => {
-  return [word];
-});
+fontRegister();
 
 const styles = StyleSheet.create({
   page: {
@@ -22,7 +19,6 @@ const styles = StyleSheet.create({
     marginVertical: 5
   },
   viewLeft: {
-    backgroundColor: '#005C85', 
     width: '40%', 
     height: '100%',
     color: '#fff',
@@ -38,7 +34,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   header: {
-    fontFamily: 'Roboto-Bold',
+    fontFamily: 'Roboto',
+    fontWeight: 'bold',
     fontSize: 24,
     color: '#fff',
   },
@@ -46,7 +43,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   sectionHeader: {
-    fontFamily: 'Roboto-Bold',
+    fontFamily: 'Roboto',
+    fontWeight: 'bold',
     backgroundColor: '#004A6A',
     width: '100%',
     paddingTop: 5,
@@ -55,7 +53,8 @@ const styles = StyleSheet.create({
     fontSize: 14
   },
   sectionHeaderSecondary: {
-    fontFamily: 'Roboto-Bold',
+    fontFamily: 'Roboto',
+    fontWeight: 'bold',
     fontSize: 14,
     color: '#005C85',
     width: '100%',
@@ -71,7 +70,8 @@ const styles = StyleSheet.create({
     display: 'flex',
   },
   itemHeading: {
-    fontFamily: 'Roboto-Bold'
+    fontFamily: 'Roboto',
+    fontWeight: 'bold'
   },
   itemText: {
     flex: '1',
@@ -85,7 +85,8 @@ const styles = StyleSheet.create({
     width: '75%'
   },
   title: {
-    fontFamily: 'Roboto-Bold',
+    fontFamily: 'Roboto',
+    fontWeight: 'bold',
     fontSize: 11
   },
   subtitle: {
@@ -96,7 +97,8 @@ const styles = StyleSheet.create({
   },
   date: {
     fontSize: 9,
-    fontFamily: 'Roboto-Bold'
+    fontFamily: 'Roboto',
+    fontWeight: 'bold'
   }
 });
 
@@ -108,26 +110,19 @@ const Col = styled(View)`
   display: flex;
 `
 
-const MyDocument = () => (
+const MyDocument = (props) => {
+  const bg = useSelector(selectBg);
+  return(
   <Document>
-    <Page size='A4' style={styles.page}>
-      <View style={styles.viewLeft}>
-        <View style={styles.section}>
-          <Text style={styles.header}>Damian Polec</Text>
-          <Text style={styles.subHeader}>Front End Developer</Text>
-        </View>
-        {/* Personal info */}
-        <Text style={styles.sectionHeader}>Personal Info</Text>
-        <View style={styles.section}>
-          <View style={styles.sectionItem}>
-            <Text style={styles.itemHeading}>Phone</Text>
-            <Text style={styles.itemText}>516825331</Text>
-          </View>
-          <View style={styles.sectionItem}>
-            <Text style={styles.itemHeading}>Email</Text>
-            <Text style={styles.itemText}>damian.polec11@gmail.com</Text>
-          </View>
-        </View>
+    <Page
+    size='A4'
+    style={{
+      display: 'flex',
+      flexDirection: 'row'
+    }}>
+      <View style={[styles.viewLeft, {backgroundColor: bg.main}]}>
+        <PersonalData
+          padding={10} />
         {/* Skills Section */}
         <Text style={styles.sectionHeader}>Skills</Text>
         <View style={styles.section}>
@@ -224,5 +219,5 @@ const MyDocument = () => (
 
     </Page>
   </Document>
-)
+)}
 export default MyDocument;

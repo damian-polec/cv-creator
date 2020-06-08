@@ -1,7 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
+import store from '../../app/store';
+import { Provider } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { 
+  selectFirstName,
+  selectSecondName,
+  selectLastName,
+  selectJobTitle,
+  selectPhoneNumber,
+  selectEmail
+ } from '../../reducers/personalSlice';
+ import {
+  selectBg
+ } from '../../reducers/docStylesSlice';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 import MyDocument from '../Document/Document';
-import { Document, Page, View, Text, StyleSheet, Font, PDFViewer } from '@react-pdf/renderer';
 
 // Font.register({ family: 'Roboto', src: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'})
 // Font.register({
@@ -37,14 +51,37 @@ import { Document, Page, View, Text, StyleSheet, Font, PDFViewer } from '@react-
 //   }
 // });
 
-const Viewer = styled(PDFViewer)`
-  width: 100%;
-  height: 100vh;
-`
-const Render =( props ) => (
-    <Viewer>
-      <MyDocument />
-    </Viewer>
-)
+const Render =( props ) => {
+  const bg = useSelector(selectBg);
+  console.log(bg);
+  const personalData = {
+    firstName: useSelector(selectFirstName),
+    secondName: useSelector(selectSecondName),
+    lastName: useSelector(selectLastName),
+    jobTitle: useSelector(selectJobTitle),
+    phone: useSelector(selectPhoneNumber),
+    email: useSelector(selectEmail)
+  }
+  return (
+    <>
+      <PDFDownloadLink 
+        document={
+          <Provider store={store}>
+            <MyDocument 
+              userData={personalData}/>  
+          </Provider>
+            } fileName='test.pdf'>
+          
+        {({ url, loading }) => {
+          if(loading) {
+            return <div>Loading</div>
+          }
+          if(!loading && url) {
+            return <button href={url} target="_blank">test</button>
+          }
+        }}
+      </PDFDownloadLink>
+    </>
+)}
 
 export default Render;
