@@ -53,7 +53,6 @@ import MyDocument from '../Document/Document';
 
 const Render =( props ) => {
   const bg = useSelector(selectBg);
-  console.log(bg);
   const personalData = {
     firstName: useSelector(selectFirstName),
     secondName: useSelector(selectSecondName),

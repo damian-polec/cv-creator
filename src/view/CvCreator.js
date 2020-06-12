@@ -8,9 +8,7 @@ import Render from '../components/Render/Render';
 const CvCreator = () => {
   return (
     <Grid container>
-      <Grid item xs={6} >
-        <Builder/>
-      </Grid>
+      <Builder/>
       <Grid item xs={6}>
         <Render />
       </Grid>

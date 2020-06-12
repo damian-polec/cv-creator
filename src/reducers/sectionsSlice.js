@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { formData } from '../utils/data';
 
 const initialState = {
-  personal: formData
+  personal: formData,
+  skills: [{title: '', desc: ''}],
 }
 
 export const sectionsSlice = createSlice({
@@ -11,6 +12,15 @@ export const sectionsSlice = createSlice({
   reducers: {
     changePersonal: (state, action) => {
       state.personal = action.payload;
+    },
+    changeSkills: (state, action) => {
+      state.skills = action.payload;
+    },
+    addSkill: (state, action) => {
+      state.skills = action.payload;
+    },
+    deleteSkill: (state, action) => {
+      state.skills = action.payload;
     },
     submitPersonal: (state, action) => {
       state.personal.firstName = action.payload.firstName;
@@ -23,7 +33,8 @@ export const sectionsSlice = createSlice({
   },
 });
 
-export const { changePersonal, submitPersonal } = sectionsSlice.actions;
+export const { changePersonal, changeSkills, addSkill, deleteSkill, submitPersonal } = sectionsSlice.actions;
 export const personalSection = state => state.sections.personal;
+export const skillsSection = state => state.sections.skills;
 
 export default sectionsSlice.reducer;

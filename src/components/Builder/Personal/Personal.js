@@ -11,13 +11,12 @@ import SaveIcon from '@material-ui/icons/Save';
 
 const Personal = () =>{
   const dispatch = useDispatch();
-  const personal = useSelector(personalSection)
-  // const [userData, setUserData] = useState(formData);
+  const personal = useSelector(personalSection);
+
   const onChange = (event) => {
     const newState = [...personal];
     const index = newState.findIndex(el => el.name === event.target.name);
     const itemData = Object.assign({}, newState[index]);
-    console.log(itemData);
     itemData.value = event.target.value;
     if (event.target.value.length > 0) {
       itemData.isFilled = true
@@ -26,7 +25,7 @@ const Personal = () =>{
     };
     newState[index] = itemData;
     dispatch(changePersonal(newState));
-  }
+  };
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -41,7 +40,7 @@ const Personal = () =>{
     }
     dispatch(submit(personalData));
   };
-  console.log('personal', personal);
+  
   let formItems = null;
   if(personal){
     formItems = personal.map((item, index) => {
