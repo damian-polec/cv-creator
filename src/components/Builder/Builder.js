@@ -1,17 +1,30 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom'
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import moment from 'moment';
+import MomentUtils from '@date-io/moment';
+import 'moment/locale/pl';
 import { Grid } from '@material-ui/core';
+import Nav from '../Nav/Nav';
 import Personal from './Personal/Personal';
 import Skills from './Skills/Skills';
-import Nav from '../Nav/Nav';
+import Lang from './Lang/Lang';
+import WorkHistory from './WorkHistory/WorkHistory';
+
+moment.locale('pl');
+
 const Builder =( props ) => (
-  <Grid item xs={6}>
-    <Nav />
-    <Switch>
-      <Route path='/app/personal' component={Personal} />
-      <Route path='/app/skills' component={Skills} /> 
-    </Switch>
-  </Grid>
+  <MuiPickersUtilsProvider locale='pl' utils={MomentUtils}>
+    <Grid item xs={6}>
+      <Nav />
+      <Switch>
+        <Route path='/app/personal' component={Personal} />
+        <Route path='/app/skills' component={Skills} />
+        <Route path='/app/lang' component={Lang} /> 
+        <Route path='/app/experiance' component={WorkHistory} />
+      </Switch>
+    </Grid>
+  </MuiPickersUtilsProvider>
 )
 
 export default Builder;

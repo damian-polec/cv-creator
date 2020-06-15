@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import store from '../../app/store';
 import { Provider } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -11,9 +10,9 @@ import {
   selectPhoneNumber,
   selectEmail
  } from '../../reducers/personalSlice';
- import {
-  selectBg
- } from '../../reducers/docStylesSlice';
+//  import {
+//   selectBg
+//  } from '../../reducers/docStylesSlice';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import MyDocument from '../Document/Document';
 
@@ -52,7 +51,7 @@ import MyDocument from '../Document/Document';
 // });
 
 const Render =( props ) => {
-  const bg = useSelector(selectBg);
+  // const bg = useSelector(selectBg);
   const personalData = {
     firstName: useSelector(selectFirstName),
     secondName: useSelector(selectSecondName),

@@ -1,11 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import { Tabs, Tab } from '@material-ui/core';
 
 
 const BuildNav = () => {
   const [value, setValue] = useState(0);
+  useEffect(() => {
+    const path = window.location.pathname;
+    switch(path) {
+      case '/app/personal':
+        if(value === 0) {
+          return;
+        }
+        setValue(0)
+        break;
+        case '/app/skills':
+          if(value === 1) {
+            return;
+          }
+          setValue(1)
+        break;
+        case '/app/lang':
+          if(value === 2) {
+            return;
+          }
+          setValue(2)
+        break;
+        case '/app/experiance':
+          if(value === 3) {
+            return;
+          }
+          setValue(3)
+        break;
+      default:
+        break;
+    }
+  }, [value]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -17,53 +47,41 @@ const BuildNav = () => {
       variant='scrollable'
       scrollButtons='auto'>
       <Tab 
-        label="Personal" 
+        label="Dane Osobowe" 
         component={Link}
         to='/app/personal'/>
       <Tab 
-        label="Skills" 
+        label="Umiejętności" 
         component={Link}
         to='/app/skills'/>
       <Tab 
-        label="Languages" 
+        label="Języki" 
         component={Link}
         to='/app/lang'/>
       <Tab 
-        label="TEst1" 
+        label="Doświadczenie" 
         component={Link}
-        to='/app/test1'/>
+        to='/app/experiance'/>
       <Tab 
-        label="Test2" 
+        label="Wykształcenie" 
         component={Link}
-        to='/app/test2'/>
-              <Tab 
-        label="Test2" 
+        to='/app/education'/>
+      <Tab 
+        label="Kursy" 
         component={Link}
-        to='/app/test2'/>
-              <Tab 
-        label="Test2" 
+        to='/app/courses'/>
+      <Tab 
+        label="Certyfikaty" 
         component={Link}
-        to='/app/test2'/>
-              <Tab 
-        label="Test2" 
+        to='/app/certificates'/>
+      <Tab 
+        label="Projekty" 
         component={Link}
-        to='/app/test2'/>
-              <Tab 
-        label="Test2" 
+        to='/app/projects'/>
+      <Tab 
+        label="Klauzula CV" 
         component={Link}
-        to='/app/test2'/>
-              <Tab 
-        label="Test2" 
-        component={Link}
-        to='/app/test2'/>
-              <Tab 
-        label="Test2" 
-        component={Link}
-        to='/app/test2'/>
-              <Tab 
-        label="Test2" 
-        component={Link}
-        to='/app/test2'/>
+        to='/app/clause'/>
     </Tabs>
   )
 }
