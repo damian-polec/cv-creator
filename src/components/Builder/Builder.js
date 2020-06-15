@@ -10,6 +10,7 @@ import Personal from './Personal/Personal';
 import Skills from './Skills/Skills';
 import Lang from './Lang/Lang';
 import WorkHistory from './WorkHistory/WorkHistory';
+import Education from './Education/Education';
 
 moment.locale('pl');
 
@@ -22,6 +23,11 @@ const Builder =( props ) => (
         <Route path='/app/skills' component={Skills} />
         <Route path='/app/lang' component={Lang} /> 
         <Route path='/app/experiance' component={WorkHistory} />
+        <Route path='/app/education' component={Education} />
+        {/* <Route path='/app/courses' component={WorkHistory} />
+        <Route path='/app/certificates' component={WorkHistory} />
+        <Route path='/app/projects' component={WorkHistory} />
+        <Route path='/app/clause' component={WorkHistory} /> */}
       </Switch>
     </Grid>
   </MuiPickersUtilsProvider>
