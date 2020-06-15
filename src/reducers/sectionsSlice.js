@@ -6,7 +6,8 @@ const initialState = {
   skills: [{title: '', desc: ''}],
   lang: [{lang: '', desc: '', lvl: ''}],
   experiance: [],
-  education: []
+  education: [],
+  courses: []
 }
 
 export const sectionsSlice = createSlice({
@@ -52,6 +53,15 @@ export const sectionsSlice = createSlice({
     deleteSchool: (state, action) => {
       state.education = action.payload;
     },
+    addCourse: (state, action) => {
+      state.courses = action.payload;
+    },
+    editCourse: (state, action) => {
+      state.courses = action.payload;
+    },
+    deleteCourse: (state, action) => {
+      state.courses = action.payload;
+    },
     submitPersonal: (state, action) => {
       state.personal.firstName = action.payload.firstName;
       state.personal.secondName = action.payload.secondName;
@@ -77,11 +87,16 @@ export const {
   deletePosition,
   addSchool,
   editSchool,
-  deleteSchool } = sectionsSlice.actions;
+  deleteSchool,
+  addCourse,
+  editCourse,
+  deleteCourse } = sectionsSlice.actions;
+
 export const personalSection = state => state.sections.personal;
 export const skillsSection = state => state.sections.skills;
 export const langSection = state => state.sections.lang;
 export const expSection = state => state.sections.experiance;
 export const eduSection = state => state.sections.education;
+export const coursesSection = state => state.sections.courses;
 
 export default sectionsSlice.reducer;

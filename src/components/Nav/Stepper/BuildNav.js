@@ -32,6 +32,36 @@ const BuildNav = () => {
           }
           setValue(3)
         break;
+        case '/app/education':
+          if(value === 4) {
+            return;
+          }
+          setValue(4)
+        break;
+        case '/app/courses':
+          if(value === 5) {
+            return;
+          }
+          setValue(5)
+        break;
+        case '/app/cerificates':
+          if(value === 6) {
+            return;
+          }
+          setValue(6)
+        break;
+        case '/app/projects':
+          if(value === 7) {
+            return;
+          }
+          setValue(7)
+        break;
+        case '/app/clause':
+          if(value === 8) {
+            return;
+          }
+          setValue(8)
+        break;
       default:
         break;
     }
