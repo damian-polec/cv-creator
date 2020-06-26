@@ -56,11 +56,17 @@ const BuildNav = () => {
           }
           setValue(7)
         break;
-        case '/app/clause':
+        case '/app/hobbies':
           if(value === 8) {
             return;
           }
           setValue(8)
+        break;
+        case '/app/clause':
+          if(value === 9) {
+            return;
+          }
+          setValue(9)
         break;
       default:
         break;
@@ -108,6 +114,10 @@ const BuildNav = () => {
         label="Projekty" 
         component={Link}
         to='/app/projects'/>
+      <Tab 
+        label="Hobby" 
+        component={Link}
+        to='/app/hobbies'/>
       <Tab 
         label="Klauzula CV" 
         component={Link}

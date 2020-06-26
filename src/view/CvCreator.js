@@ -9,9 +9,7 @@ const CvCreator = () => {
   return (
     <Grid container>
       <Builder/>
-      <Grid item xs={6}>
-        <Render />
-      </Grid>
+      <Render />
     </Grid>
   )
 }

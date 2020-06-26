@@ -1,15 +1,16 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
-import { personalSection } from '../../../reducers/sectionsSlice'
+import { personalSection } from '../../../../reducers/sectionsSlice'
 import { View, Text, StyleSheet} from '@react-pdf/renderer';
-import Section from '../Elements/Section/Section';
-import SectionItem from '../Elements/Section/SectionItem/SectionItem'
+import Section from '../../Elements/Section/Section';
+import SectionItem from '../../Elements/Section/SectionItem/SectionItem'
 
 
 const styles = StyleSheet.create({
   name: {
     fontFamily: 'Roboto',
-    fontSize: 24,
+    fontWeight: 'bold',
+    fontSize: '24pt',
     color: '#fff',
   },
   jobTitle: {
@@ -38,16 +39,19 @@ const PersonalData = (props) => {
 
   return (
   <>
-    <View style={{padding: props.padding}}>
-      <Text style={styles.name}>
-        {personal.firstName.isFilled && personal.firstName.value}
-        {personal.middleName.isFilled && personal.middleName.value}
-        {personal.lastName.isFilled && personal.lastName.value}
-      </Text>
-      <Text style={styles.jobTitle}>{personal.jobTitle.value}</Text>
-    </View>
+    {personal.firstName.isFilled || personal.middleName.isFilled || personal.lastName.isFilled || personal.jobTitle.isFilled
+      ?
+      <View style={{paddingLeft: props.padding, paddingTop: props.padding, paddingBottom: props.padding}}>
+        <Text style={styles.name}>
+          {personal.firstName.isFilled ? personal.firstName.value : null}
+          {personal.middleName.isFilled ? personal.middleName.value : null}
+          {personal.lastName.isFilled ? personal.lastName.value : null}
+        </Text>
+        <Text style={styles.jobTitle}>{personal.jobTitle.value}</Text>
+      </View> : null
+  }
     <Section
-      title='Personal Info' 
+      title='Dane Osobowe' 
       padding={props.padding}>
       {sectionItems}
     </Section>

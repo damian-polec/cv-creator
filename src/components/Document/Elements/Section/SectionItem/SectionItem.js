@@ -7,6 +7,11 @@ const styles = StyleSheet.create({
     fontSize: 10,
     display: 'flex',
   },
+  headingWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
   itemHeading: {
     fontFamily: 'Roboto',
     fontWeight: 'bold'
@@ -20,8 +25,11 @@ const styles = StyleSheet.create({
 
 const SectionItem = (props) => (
   <View style={styles.sectionItem}>
-    <Text style={styles.itemHeading}>{props.label}</Text>
-    <Text style={styles.itemText}>{props.value}</Text>
+    <View style={styles.headingWrapper}>
+      {props.label ? <Text style={styles.itemHeading}>{props.label}</Text> : null}
+      {props.lvl ? <Text style={styles.itemHeading}>{props.lvl}</Text> : null}
+    </View>
+    {props.value ? <Text style={styles.itemText}>{props.value}</Text> : null}
   </View>
 )
 

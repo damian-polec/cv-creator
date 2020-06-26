@@ -1,6 +1,6 @@
 export const formData = [
   {
-      value: '',
+      value: 'Jan',
       label: 'Imię',
       type: 'text',
       name: 'firstName',
@@ -18,7 +18,7 @@ export const formData = [
     group: 'personal'
   },
   {
-    value: '',
+    value: 'Kowalski',
     label: 'Nazwisko',
     type: 'text',
     name: 'lastName',
@@ -27,7 +27,7 @@ export const formData = [
     group: 'personal'
   },
   {
-    value: '',
+    value: 'Doradca Klienta',
     label: 'Tytuł Zawodowy',
     type: 'text',
     name: 'jobTitle',
@@ -36,7 +36,7 @@ export const formData = [
     group: 'personal'
   },
   {
-    value: '',
+    value: '+48 215 123 256',
     label: 'Numer Telefonu',
     type: 'text',
     name: 'phoneNumber',
@@ -45,7 +45,7 @@ export const formData = [
     group: 'contact'
   },
   {
-    value: '',
+    value: 'jan.kowalski@przyklad.pl',
     label: 'Email',
     type: 'text',
     name: 'email',

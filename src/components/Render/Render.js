@@ -2,6 +2,7 @@ import React from 'react';
 import store from '../../app/store';
 import { Provider } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { Grid, Paper, makeStyles } from '@material-ui/core'
 import { 
   selectFirstName,
   selectSecondName,
@@ -13,45 +14,27 @@ import {
 //  import {
 //   selectBg
 //  } from '../../reducers/docStylesSlice';
+import Modern from './Templates/Modern/Modern';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import MyDocument from '../Document/Document';
 
-// Font.register({ family: 'Roboto', src: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'})
-// Font.register({
-//   family: 'Roboto',
-//   fonts: [
-//     {
-//       src: '/fonts/Roboto-Regular.ttf'
-//     },
-//   ]
-// })
-
-// const styles = StyleSheet.create({
-//   page: {
-//     display: 'flex',
-//     flexDirection: 'row',
-//   },
-//   viewLeft: {
-//     backgroundColor: '#005C85', 
-//     width: '40%', 
-//     height: '100%',
-//     padding: '15px'
-//   },
-//   viewRight: {
-//     backgroundColor: '#fff',
-//     width: '100%',
-//     height: '100%'
-//   },
-//   header: {
-//     // fontFamily: 'Roboto',
-//     fontSize: '20px',
-//     color: '#fff',
-//     fontWeight: 'bold'
-//   }
-// });
+const useStyles = makeStyles((theme) => ({
+  render: {
+    backgroundColor: '#525659'
+  },
+  wrapper: {
+    minHeight: '100vh'
+  },
+  page: {
+    width: '595px',
+    height: '842px',
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  }
+})) 
 
 const Render =( props ) => {
-  // const bg = useSelector(selectBg);
+  const classes = useStyles()
   const personalData = {
     firstName: useSelector(selectFirstName),
     secondName: useSelector(selectSecondName),
@@ -60,6 +43,35 @@ const Render =( props ) => {
     phone: useSelector(selectPhoneNumber),
     email: useSelector(selectEmail)
   }
+  return (
+    <Grid className={classes.render} item xs={6}>
+      <Grid
+        className={classes.wrapper} 
+        container
+        justify='center'
+        alignItems='center'>
+        <Modern />
+      </Grid>
+      <PDFDownloadLink 
+        document={
+          <Provider store={store}>
+            <MyDocument 
+              userData={personalData}/>  
+          </Provider>
+            } fileName='test.pdf'>
+          
+        {({ url, loading }) => {
+          if(loading) {
+            return <div>Loading</div>
+          }
+          if(!loading && url) {
+            return <button href={url} target="_blank">test</button>
+          }
+        }}
+      </PDFDownloadLink>
+    </Grid>
+  )
+
   return (
     <>
       <PDFDownloadLink 
@@ -80,6 +92,7 @@ const Render =( props ) => {
         }}
       </PDFDownloadLink>
     </>
-)}
+)
+}
 
 export default Render;
